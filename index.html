@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>人生抉择器v1.0</title>
+    <title>人生抉择器</title>
     <style media="screen">
       .warp{width: 100%;height: 500px;border:solid blue;border-radius: 20%;
       background: rgb(107, 119, 61);}
@@ -23,9 +23,11 @@
   <script type="text/javascript">
     //定义一个姓名数组
     var names = ['美广','东一','东二','千张面馆','大家好','片皮烤鸭','其他','陕西面馆',
-  '炸鸡','锅贴','煎包','不吃了'];
+  '炸鸡','锅贴','煎包','方便面','外卖','不吃了'];
+
     //点击开始按钮执行的函数
-    var timer; //定义全局变量
+    var timer; //定义全局变量\
+    var chushi = -1;
     function start(){
       var nameObj = document.getElementById('names');//获取放姓名容器的对象
       var btn = document.getElementById('btn');
@@ -34,7 +36,12 @@
       if(btn.innerHTML == '开始选菜'){
         timer = setInterval(function(){
           //随机取出名字
-          nameObj.innerHTML = names[Math.floor(Math.random()*names.length)];
+          var houlai = Math.floor(Math.random()*names.length);
+          while (houlai == chushi){
+            houlai = Math.floor(Math.random()*names.length);
+          }
+          nameObj.innerHTML = names[houlai];
+          chushi = houlai;
         },100);
         btn.innerHTML = '结束';
       }else {
