@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>选择器</title>
+    <style media="screen">
+      .warp{width: 250px;height: 180px;border: 5px solid blue;border-radius: 10px;
+      background: rgb(195, 34, 136);margin: 40px auto;}
+      #names{width: 200px;height: 50px;line-height: 50px;text-align: center;color: red;
+      font-size: 45px;margin: 20px auto;}
+      #btn{width:100px;height: 50px;background: #0099cc;border-radius: 10px;
+      margin: 40px auto;display: block;}
+    </style>
+  </head>
+  <body>
+    <div class="warp">
+      <div id="names">一会吃什么</div>
+      <button onclick="start()" type="button" name="button" id='btn'>开始选菜</button>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+    //定义一个姓名数组
+    var names = ['美广','东一','东二','千张面馆','大家好','片皮烤鸭','其他'];
+    //点击开始按钮执行的函数
+    var timer; //定义全局变量
+    function start(){
+      var nameObj = document.getElementById('names');//获取放姓名容器的对象
+      var btn = document.getElementById('btn');
+
+
+      if(btn.innerHTML == '开始选菜'){
+        timer = setInterval(function(){
+          //随机取出名字
+          nameObj.innerHTML = names[parseInt(Math.random()*1000)%names.length];
+        },100);
+        btn.innerHTML = '结束';
+      }else {
+        clearInterval(timer);
+        btn.innerHTML = '开始选菜';
+      }
+
+
+
+    }
+  </script>
+</html>
